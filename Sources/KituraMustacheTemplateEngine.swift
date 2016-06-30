@@ -15,18 +15,13 @@
  **/
 
 import KituraTemplateEngine
-#if !os(Linux)
 import Mustache
-#endif
 
 public class MustacheTemplateEngine: TemplateEngine {
     public var fileExtension: String { return "mustache" }
     public init() {}
 
     public func render(filePath: String, context: [String: Any]) throws -> String {
-        #if os(Linux)
-        return "support for GRMustache not yet implemented on Linux"
-        #else
         let template = try Template(path: filePath)
         // currently use type conversion to [String: AnyObject], works only in OS X
         var contextWithAnyObjects = [String: AnyObject]()
@@ -35,6 +30,5 @@ public class MustacheTemplateEngine: TemplateEngine {
         }
 
         return try template.render(with: Box(contextWithAnyObjects))
-        #endif
     }
 }
