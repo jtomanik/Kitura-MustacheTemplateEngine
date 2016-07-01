@@ -24,7 +24,7 @@ public class MustacheTemplateEngine: TemplateEngine {
 
     public func render(filePath: String, context: [String: Any]) throws -> String {
         let templateFile = try File(path: "README.md")
-        let templateString = try String(data: templateFile.read())
+        let templateString = try String(data: templateFile.readAllBytes())
         let template = try Template(string: templateString)
         return try template.render(with: Box(context))
     }
