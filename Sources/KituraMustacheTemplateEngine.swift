@@ -22,7 +22,7 @@ public class MustacheTemplateEngine: TemplateEngine {
     public var fileExtension: String { return "mustache" }
     public init() {}
 
-    public func render(filePath: String, context: [String: Any]) throws -> String {
+    public func render(filePath: String, context: [String: String]) throws -> String {
         let templateFile = try File(path: "README.md")
         let templateString = try String(data: templateFile.readAllBytes())
         let template = try Template(string: templateString)
