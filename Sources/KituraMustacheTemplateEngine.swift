@@ -16,19 +16,16 @@
 
 import KituraTemplateEngine
 import Mustache
+import File
 
 public class MustacheTemplateEngine: TemplateEngine {
     public var fileExtension: String { return "mustache" }
     public init() {}
 
     public func render(filePath: String, context: [String: Any]) throws -> String {
-        let template = try Template(path: filePath)
-        // currently use type conversion to [String: AnyObject], works only in OS X
-        var contextWithAnyObjects = [String: AnyObject]()
-        for (key, value) in context {
-            contextWithAnyObjects[key] = value as? AnyObject
-        }
-
-        return try template.render(with: Box(contextWithAnyObjects))
+        let templateFile = try File(path: "README.md")
+        let templateString = try String(data: templateFile.read())
+        let template = try Template(string: templateString)
+        return try template.render(with: Box(context))
     }
 }

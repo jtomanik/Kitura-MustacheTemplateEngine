@@ -20,6 +20,7 @@ let package = Package(
     name: "KituraMustache",
     dependencies: [
         .Package(url: "https://github.com/IBM-Swift/Kitura-TemplateEngine.git", majorVersion: 0, minor: 16),
-        .Package(url: "https://github.com/Zewo/Mustache.git", majorVersion: 0, minor: 6)
+        .Package(url: "https://github.com/Zewo/Mustache.git", majorVersion: 0, minor: 6),
+        .Package(url: "https://github.com/Zewo/File.git", majorVersion: 0, minor: 8)
         ]
 )
